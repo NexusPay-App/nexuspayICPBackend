@@ -1,0 +1,11 @@
+service: () -> {
+    addBusiness: (record {name:text; till:nat64}) -> (variant {Ok:record {name:text; till:nat64; wallet:principal}; Err:variant {PaymentFailed:text; InvalidPayload:text; NotFound:text; PaymentCompleted:text}});
+    addUser: (record {name:text; number:nat64}) -> (variant {Ok:record {name:text; number:nat64; wallet:principal}; Err:variant {PaymentFailed:text; InvalidPayload:text; NotFound:text; PaymentCompleted:text}});
+    createTxHistory: (record {to:text; number:nat64; wallet:principal; amount:nat64}) -> (variant {Ok:record {to:text; number:nat64; wallet:principal; amount:nat64}; Err:variant {PaymentFailed:text; InvalidPayload:text; NotFound:text; PaymentCompleted:text}});
+    getAddressFromPrincipal: (principal) -> (text) query;
+    getAuth: (principal) -> (variant {Ok:record {name:text; number:nat64; wallet:principal}; Err:variant {PaymentFailed:text; InvalidPayload:text; NotFound:text; PaymentCompleted:text}}) query;
+    getBusiness: (nat64) -> (variant {Ok:record {name:text; till:nat64; wallet:principal}; Err:variant {PaymentFailed:text; InvalidPayload:text; NotFound:text; PaymentCompleted:text}}) query;
+    getHistory: (nat64) -> (variant {Ok:record {to:text; number:nat64; wallet:principal; amount:nat64}; Err:variant {PaymentFailed:text; InvalidPayload:text; NotFound:text; PaymentCompleted:text}}) query;
+    getUser: (nat64) -> (variant {Ok:record {name:text; number:nat64; wallet:principal}; Err:variant {PaymentFailed:text; InvalidPayload:text; NotFound:text; PaymentCompleted:text}}) query;
+    makePayment: (text, nat64) -> (variant {Ok:variant {PaymentFailed:text; InvalidPayload:text; NotFound:text; PaymentCompleted:text}; Err:variant {PaymentFailed:text; InvalidPayload:text; NotFound:text; PaymentCompleted:text}});
+}
